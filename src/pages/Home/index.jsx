@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { Loading } from "../../components/Loading";
 import { getApiData } from "../../services/api";
