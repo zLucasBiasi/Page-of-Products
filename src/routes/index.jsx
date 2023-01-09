@@ -1,20 +1,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { Header } from "../components/Header";
-import { Home } from "../pages/Home";
-import { Produto } from "../pages/Produto";
-import { Contact } from "../pages/Contato";
 
-import { NotFound } from "../pages/NotFound";
+import { Contact, Home, NotFound, Product } from "../pages";
 
-export const Rotas = () => {
+export const Router = () => {
   return (
     <BrowserRouter>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="contato" element={<Contact />} />
-        <Route path="produto/:item" element={<Produto />} />
+        <Route path="produto/:item" element={<Product />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -1,30 +1,11 @@
-import { useState, useEffect } from "react";
-
 import { Loading } from "../../components/Loading";
+import { useFetch } from "../../hooks/useFetch";
 import { getApiData } from "../../services/api";
 
 import * as S from "./style";
 
 export const Home = () => {
-  const [dados, setDados] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const useApiData = async () => {
-      try {
-        setLoading(true);
-        setDados(await getApiData("produto"));
-      } catch (erro) {
-        setError("um erro ocorreu");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    useApiData();
-  }, []);
-
+  const { error, loading, data } = useFetch(getApiData("produto"));
   if (loading) return <Loading />;
   if (error) return <p>{error}</p>;
 
@@ -32,7 +13,7 @@ export const Home = () => {
     <>
       <S.Wrapper>
         <S.WrapperProducts>
-          {dados?.map((item) => (
+          {data?.map((item) => (
             <S.StyleLink key={item.id} to={`produto/${item.id}`}>
               <S.Image src={item.fotos[0].src} />
               <S.Title>{item.nome}</S.Title>
